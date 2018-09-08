@@ -1,0 +1,106 @@
+class Fetch extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: null,
+      error: null,
+      loading: false
+    };
+  }
+
+  componentDidMount() {
+    const {
+      method,
+      url,
+      body
+    } = this.props;
+    this.setState(
+      { loading: true },
+      () => {
+        window
+          .fetch(url, {
+            body,
+            headers: {
+              Accept: "application/json"
+            },
+            method,
+            mode: "cors"
+          })
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              data,
+              loading: false
+            });
+          })
+          .catch(error => {
+            this.setState({
+              error,
+              loading: false
+            });
+          });
+      }
+    );
+  }
+
+  render() {
+    const {
+      error,
+      loading
+    } = this.state;
+    if (error) {
+      return (
+        <div>
+          {error.message ||
+            "Unknown error 😭"}
+        </div>
+      );
+    }
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    return React.cloneElement(
+      this.props.children,
+      this.state
+    );
+  }
+}
+
+const DataTable = ({ data }) =>
+  data ? (
+    <table>
+      <tbody>
+        <tr>
+          {Object.keys(data[0]).map(
+            (key, i) => (
+              <th key={i}>{key}</th>
+            )
+          )}
+        </tr>
+        {data.map((d, i) => (
+          <tr key={i}>
+            {Object.values(d).map((val, i) => (
+              <td key={i}>
+                {typeof val === "boolean"
+                  ? val
+                    ? "true"
+                    : "false"
+                  : val}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : null;
+
+render(
+  <Fetch
+    body={null}
+    method="GET"
+    url="https://jsonplaceholder.typicode.com/todos"
+  >
+    <DataTable />
+  </Fetch>
+);

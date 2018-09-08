@@ -1,0 +1,48 @@
+class Fetch extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { user: null }
+  }
+
+  componentDidMount() {
+    const url =
+      "https://jsonplaceholder.typicode.com/todos"
+    window
+      .fetch(url)
+      .then(res => res.json())
+      .then(todos => {
+        this.setState({ todos })
+      })
+  }
+
+  render() {
+    return this.props.children(this.state)
+  }
+}
+
+render(
+  <Fetch>
+    {({ todos }) =>
+      todos ? (
+        <div>
+          <h1>total TODOs: {todos.length}</h1>
+          <h2>first five...</h2>
+          <ul>
+            {todos.slice(0, 5).map((todo, i) => (
+              <li key={i}>
+                {todo.completed ? (
+                  <del>{todo.title}</del>
+                ) : (
+                  todo.title
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )
+    }
+  </Fetch>
+)
