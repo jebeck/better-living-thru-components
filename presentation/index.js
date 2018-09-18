@@ -410,6 +410,30 @@ export default class Presentation extends React.Component {
             code={require("raw-loader!../assets/ply/post.example")}
           />
         </Slide>
+        <Slide>
+          <Heading>making</Heading>
+          <Heading fit>
+            <LightCode>{"<Fetch />"}</LightCode>
+          </Heading>
+          <Heading>more flexible</Heading>
+          <Heading>via "render props" support</Heading>
+        </Slide>
+        <CodeSlide
+          code={require("raw-loader!../assets/ply/flexible.example")}
+          lang="js"
+          ranges={[
+            { loc: [0, 1], title: "more flexible <Fetch />" },
+            {
+              loc: [51, 59],
+              note: "the 'render props' escape hatch"
+            }
+          ]}
+        />
+        <Slide>
+          <ComponentPlayground
+            code={require("raw-loader!../assets/ply/flexible.example")}
+          />
+        </Slide>
       </Deck>
     );
   }
