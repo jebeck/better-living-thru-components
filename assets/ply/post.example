@@ -10,36 +10,50 @@ class Fetch extends Component {
   }
 
   componentDidMount() {
-    const { method, url, body } = this.props;
-    this.setState({ loading: true }, () => {
-      window
-        .fetch(url, {
-          body,
-          headers: {
-            Accept: "application/json"
-          },
-          method,
-          mode: "cors"
-        })
-        .then(res => res.json())
-        .then(data => {
-          this.setState({ data, loading: false });
-        })
-        .catch(error => {
-          this.setState({
-            error,
-            loading: false
+    const {
+      method,
+      url,
+      body
+    } = this.props;
+    this.setState(
+      { loading: true },
+      () => {
+        window
+          .fetch(url, {
+            body,
+            headers: {
+              Accept: "application/json"
+            },
+            method,
+            mode: "cors"
+          })
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              data,
+              loading: false
+            });
+          })
+          .catch(error => {
+            this.setState({
+              error,
+              loading: false
+            });
           });
-        });
-    });
+      }
+    );
   }
 
   render() {
-    const { error, loading } = this.state;
+    const {
+      error,
+      loading
+    } = this.state;
     if (error) {
       return (
         <div>
-          {error.message || "Unknown error 😭"}
+          {error.message ||
+            "Unknown error 😭"}
         </div>
       );
     }
@@ -63,7 +77,9 @@ const Resp = ({ data }) =>
 
 render(
   <Fetch
-    body={JSON.stringify({ title: "say hi 👋" })}
+    body={JSON.stringify({
+      title: "say hi 👋"
+    })}
     method="POST"
     url="https://jsonplaceholder.typicode.com/posts"
   >

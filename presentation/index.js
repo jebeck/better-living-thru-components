@@ -12,8 +12,10 @@ import {
   Code,
   ComponentPlayground,
   Deck,
+  Fill,
   Heading,
   Image,
+  Layout,
   Link,
   List,
   ListItem,
@@ -49,10 +51,14 @@ const theme = createTheme(themeColors, {
 });
 
 const images = {
+  algoOrg: require("../assets/img/algo_organization.png"),
   flask: require("../assets/img/flask.png"),
   hive: require("../assets/img/hive.png"),
   lacroixamid: require("../assets/img/lacroixamid.jpg"),
   presto: require("../assets/img/presto.png"),
+  python: require("../assets/img/python.svg"),
+  redis: require("../assets/img/redis.png"),
+  rLogo: require("../assets/img/r_logo.png"),
   spark: require("../assets/img/spark.png")
 };
 
@@ -202,14 +208,38 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Heading size={2}>(the team)</Heading>
+          <Image src={images.algoOrg} />
+        </Slide>
+        <Slide>
+          <Heading size={2}>(the team)</Heading>
           <List>
             <ListItem>technical</ListItem>
             <ListItem>...but not with frontend web dev</ListItem>
           </List>
         </Slide>
         <Slide>
-          <Heading size={2}>(the team)</Heading>
-          TODO: icons of at least Python, R, spark
+          <div
+            style={{
+              backgroundColor: "rgba(255,255,255,0.33)",
+              borderRadius: "1rem",
+              paddingBottom: "0.75rem",
+              paddingLeft: "1.5rem",
+              paddingTop: "1.25rem"
+            }}
+          >
+            <Heading size={2} style={{ paddingBottom: "1.5rem" }}>
+              (the team)
+            </Heading>
+            <Layout>
+              <Fill>
+                <Image src={images.python} width={450} />
+                <Image src={images.rLogo} width={240} />
+              </Fill>
+              <Fill>
+                <Image src={images.spark} width={360} />
+              </Fill>
+            </Layout>
+          </div>
         </Slide>
         <Slide>
           <Heading fit>the stack</Heading>
@@ -218,10 +248,25 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
         <Slide>
-          <Heading size={2}>(the [web] stack)</Heading>
-          <Image src={images.hive} width={310} />
-          <Image src={images.presto} />
-          <Image src={images.flask} width={310} />
+          <div
+            style={{
+              backgroundColor: "rgba(255,255,255,0.33)",
+              borderRadius: "1rem",
+              paddingTop: "1.25rem"
+            }}
+          >
+            <Heading size={2}>(the [web] stack)</Heading>
+            <Layout>
+              <Fill>
+                <Image src={images.hive} width={232.5} />
+                <Image src={images.presto} />
+              </Fill>
+              <Fill>
+                <Image src={images.flask} width={310} />
+                <Image src={images.redis} />
+              </Fill>
+            </Layout>
+          </div>
         </Slide>
         <Slide>
           <Heading size={2}>data warehouse</Heading>
@@ -316,11 +361,6 @@ export default class Presentation extends React.Component {
           </Heading>
           <Heading>@ Stitch Fix</Heading>
         </Slide>
-        <Slide>
-          <ComponentPlayground
-            code={require("raw-loader!../assets/ply/initial.example")}
-          />
-        </Slide>
         <CodeSlide
           code={require("raw-loader!../assets/ply/initial.example")}
           lang="js"
@@ -330,7 +370,7 @@ export default class Presentation extends React.Component {
             { loc: [17, 31], note: "fire off the request" },
             { loc: [31, 38], note: "handle success" },
             { loc: [38, 44], note: "handle error" },
-            { loc: [48, 70], note: "the render method" },
+            { loc: [48, 69], note: "the render method" },
             { loc: [53, 61], note: "zero-effort error display" },
             { loc: [61, 64], note: "zero-effort loading display" },
             {
@@ -340,16 +380,16 @@ export default class Presentation extends React.Component {
           ]}
         />
         <Slide>
+          <ComponentPlayground
+            code={require("raw-loader!../assets/ply/initial.example")}
+          />
+        </Slide>
+        <Slide>
           <Heading>making</Heading>
           <Heading fit>
             <LightCode>{"<Fetch />"}</LightCode>
           </Heading>
           <Heading>more generic</Heading>
-        </Slide>
-        <Slide>
-          <ComponentPlayground
-            code={require("raw-loader!../assets/ply/generic.example")}
-          />
         </Slide>
         <CodeSlide
           code={require("raw-loader!../assets/ply/generic.example")}
@@ -357,9 +397,14 @@ export default class Presentation extends React.Component {
           ranges={[
             { loc: [0, 1], title: "more generic <Fetch />" },
             { loc: [17, 29], note: "pass in the url, body, method" },
-            { loc: [46, 68], note: "everything else the same" }
+            { loc: [46, 67], note: "everything else the same" }
           ]}
         />
+        <Slide>
+          <ComponentPlayground
+            code={require("raw-loader!../assets/ply/generic.example")}
+          />
+        </Slide>
         <Slide>
           <ComponentPlayground
             code={require("raw-loader!../assets/ply/post.example")}

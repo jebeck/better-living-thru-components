@@ -80,15 +80,18 @@ const DataTable = ({ data }) =>
         </tr>
         {data.map((d, i) => (
           <tr key={i}>
-            {Object.values(d).map((val, i) => (
-              <td key={i}>
-                {typeof val === "boolean"
-                  ? val
-                    ? "true"
-                    : "false"
-                  : val}
-              </td>
-            ))}
+            {Object.values(d).map(
+              (val, i) => (
+                <td key={i}>
+                  {typeof val ===
+                  "boolean"
+                    ? val
+                      ? "true"
+                      : "false"
+                    : val}
+                </td>
+              )
+            )}
           </tr>
         ))}
       </tbody>
