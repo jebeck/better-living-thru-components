@@ -1,0 +1,70 @@
+class TSNE extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      computing: false,
+      coords: null,
+      error: null
+    };
+  }
+
+  componentDidMount() {
+    if (
+      this.props.cache &&
+      !this.props.recompute
+    ) {
+      this.setState({
+        coords: window.localStorage.getItem(
+          "tsne"
+        )
+      });
+    } else {
+      this.compute();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.recompute &&
+      prevProps.recompute !==
+        this.props.recompute
+    ) {
+      this.compute();
+    }
+  }
+
+  compute = () => {
+    const { data } = this.props;
+    this.setState(
+      { computing: true },
+      () => {
+        tsne(data)
+          .then(coords => {
+            this.setState({
+              computing: false,
+              coords
+            });
+            if (this.props.cache) {
+              window.localStorage.setItem(
+                "tsne",
+                JSON.stringify(coords)
+              );
+            }
+          })
+          .then(error => {
+            this.setState({
+              computing: false,
+              error
+            });
+          });
+      }
+    );
+  };
+
+  render() {
+    return this.props.children(
+      this.state
+    );
+  }
+}

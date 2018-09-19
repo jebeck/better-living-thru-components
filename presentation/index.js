@@ -53,7 +53,10 @@ const theme = createTheme(themeColors, {
 
 const images = {
   algoOrg: require("../assets/img/algo_organization.png"),
+  enhance: require("../assets/img/enhance.png"),
   flask: require("../assets/img/flask.png"),
+  handwrittenNumbers: require("../assets/img/handwritten_numbers.png"),
+  handwrittenNumbersTsne: require("../assets/img/handwritten_numbers_tsne.gif"),
   hazFeedback: require("../assets/img/haz_feedback.jpg"),
   hive: require("../assets/img/hive.png"),
   lacroixamid: require("../assets/img/lacroixamid.jpg"),
@@ -61,7 +64,9 @@ const images = {
   python: require("../assets/img/python.svg"),
   redis: require("../assets/img/redis.png"),
   rLogo: require("../assets/img/r_logo.png"),
-  spark: require("../assets/img/spark.png")
+  spark: require("../assets/img/spark.png"),
+  tsne: require("../assets/img/tsne.png"),
+  tsneEnhanced: require("../assets/img/tsne_enhanced.png")
 };
 
 preloader(images);
@@ -652,6 +657,15 @@ export default class Presentation extends React.Component {
             }
           ]}
         />
+        <Slide>
+          <Heading>? what about ?</Heading>
+          <Heading fit>
+            <LightCode>{"<Delete />"}</LightCode>
+          </Heading>
+          <Appear>
+            <Heading fit>(left as an exercise 😉)</Heading>
+          </Appear>
+        </Slide>
         <Slide bgColor="tertiary" textColor="primary">
           <Heading textColor="primary">outline</Heading>
           <List>
@@ -673,6 +687,72 @@ export default class Presentation extends React.Component {
           </Heading>
           <Heading fit>components</Heading>
         </Slide>
+        <Slide>
+          <Heading fit size={2}>
+            ...compute in the browser? 🤔
+          </Heading>
+        </Slide>
+        <Slide>
+          <Image src={images.tsne} />
+        </Slide>
+        <Slide>
+          <Image src={images.enhance} />
+        </Slide>
+        <Slide>
+          <Image src={images.tsneEnhanced} />
+        </Slide>
+        <Slide>
+          <Heading>what's t-SNE?</Heading>
+          <Heading size={2}>t-distributed</Heading>
+          <Heading size={2}>(S)tochastic (N)eighbor (E)mbedding</Heading>
+        </Slide>
+        <Slide>
+          <Heading>what's t-SNE?</Heading>
+          <Heading fit size={2}>
+            a technique for dimensionality reduction
+          </Heading>
+          <Heading fit>i.e., grouping in 2 or 3 dimensions</Heading>
+        </Slide>
+        <Slide>
+          <Heading fit>ex: (next slide)</Heading>
+          <Heading fit size={2}>
+            grouping handwritten numbers
+          </Heading>
+          <Image src={images.handwrittenNumbers} />
+        </Slide>
+        <Slide>
+          <Image src={images.handwrittenNumbersTsne} width="75%" />
+        </Slide>
+        <Slide>
+          <Heading fit>why tSNE as a component?</Heading>
+          <Appear>
+            <List>
+              <ListItem>make declarative via lifecycle</ListItem>
+              <ListItem>
+                <S type="bold">cache</S> the computed result
+              </ListItem>
+              <List>
+                <ListItem>for faster dev</ListItem>
+                <ListItem>for better UX when navigating between pages</ListItem>
+              </List>
+            </List>
+          </Appear>
+        </Slide>
+        <CodeSlide
+          code={require("raw-loader!../assets/cs/compute.example")}
+          lang="js"
+          ranges={[
+            { loc: [0, 1], title: "sketch of a <Compute /> component API" },
+            { loc: [36, 63], note: "the compute method" },
+            { loc: [47, 53], note: "✨new✨: cache result in localStorage" },
+            { loc: [11, 25], note: "more interesting: componentDidMount" },
+            {
+              loc: [26, 35],
+              note: "componentDidUpdate: force recompute via prop"
+            },
+            { loc: [64, 69], note: "render: just the 'render props' pattern" }
+          ]}
+        />
         <Slide bgColor="tertiary" textColor="primary">
           <Heading textColor="primary">outline</Heading>
           <List>
@@ -687,6 +767,19 @@ export default class Presentation extends React.Component {
             </ListItem>
             <ListItem>
               <S type="strikethrough">{"<Compute /> components"}</S>
+            </ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <Heading>conclusion</Heading>
+          <Heading fit size={2}>
+            components are a good unit of abstraction
+          </Heading>
+          <List>
+            <ListItem>approachable</ListItem>
+            <ListItem>encapsulated (single-file)</ListItem>
+            <ListItem>
+              easy documentation via Storybook, Styleguidist, etc.
             </ListItem>
           </List>
         </Slide>
