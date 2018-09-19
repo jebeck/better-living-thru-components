@@ -10,7 +10,9 @@ class FogtownFetch extends Component {
   }
 
   componentDidMount() {
-    const { table } = this.props;
+    const {
+      table
+    } = this.props;
     const url = `http://localhost:5000/?table=${table}`;
     this.setState(
       { loading: true },
@@ -25,18 +27,6 @@ class FogtownFetch extends Component {
               })
             },
             mode: "cors"
-          })
-          .then(res => {
-            if (
-              res.status >= 200 &&
-              res.status < 300
-            ) {
-              return res;
-            } else {
-              throw new Error(
-                "Did you forget to source your .env?"
-              );
-            }
           })
           .then(res => res.json())
           .then(data => {
@@ -98,7 +88,9 @@ const Data = ({ data }) =>
   ) : null;
 
 render(
-  <FogtownFetch table="la_croix_survey">
+  <FogtownFetch
+    table="la_croix_survey"
+  >
     <Data />
   </FogtownFetch>
 );

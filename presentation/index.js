@@ -354,9 +354,9 @@ export default class Presentation extends React.Component {
           </BlockQuote>
         </Slide>
         <Slide>
-          <Heading>the</Heading>
+          <Heading>the 'Rethinker'</Heading>
           <Heading fit>
-            <LightCode>{"<Rethinker />"}</LightCode>
+            <LightCode>{"<Fetch />"}</LightCode>
           </Heading>
           <Heading>example</Heading>
         </Slide>
@@ -373,7 +373,7 @@ export default class Presentation extends React.Component {
           <Heading>@ Stitch Fix</Heading>
         </Slide>
         <CodeSlide
-          code={require("raw-loader!../assets/ply/initial.example")}
+          code={require("raw-loader!../assets/cs/initial.example")}
           lang="js"
           ranges={[
             { loc: [0, 1], title: "initial <Fetch /> API" },
@@ -477,17 +477,49 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <Slide>
+          <Heading fit>let's talk about lifecycle methods</Heading>
+          <Heading size={2}>for GET requests</Heading>
           <List>
             <ListItem>
-              GET ➡️ <LightCode>componentDidMount</LightCode>
-              {" and "}
+              <LightCode>componentDidMount</LightCode>
+            </ListItem>
+            <ListItem>
               <LightCode>componentDidUpdate</LightCode>
             </ListItem>
-            <ListItem>POST ➡️ ???</ListItem>
-            <ListItem>DELETE ➡️ ???</ListItem>
+            <ListItem>
+              <S type="strikethrough">
+                <LightCode>componentWillReceiveProps</LightCode>
+              </S>
+            </ListItem>
           </List>
+        </Slide>
+        <Slide>
+          <Heading fit>let's talk about lifecycle methods</Heading>
+          <Heading fit size={2}>
+            for POST requests
+          </Heading>
+          <List>
+            <ListItem>???</ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <Heading fit>let's talk about lifecycle methods</Heading>
+          <Heading fit size={2}>
+            for DELETE requests
+          </Heading>
+          <List>
+            <ListItem>???</ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <Heading fit>GET and POST are</Heading>
+          <Heading fit size={2}>
+            dependent on user action
+          </Heading>
           <Appear>
-            <Heading>dependent on user action</Heading>
+            <Heading fit>
+              <LightCode>s/lifecycle/instance</LightCode>
+            </Heading>
           </Appear>
         </Slide>
         <Slide>
@@ -495,6 +527,12 @@ export default class Presentation extends React.Component {
           <Appear>
             <Heading size={2}>render a 🔘 button</Heading>
           </Appear>
+        </Slide>
+        <Slide>
+          <Heading size={2}>better living</Heading>
+          <Heading size={2}>thru</Heading>
+          <Heading size={1}>(mostly) non-presentational</Heading>
+          <Heading size={2}>components</Heading>
         </Slide>
         <CodeSlide
           code={require("raw-loader!../assets/cs/save0.example")}
@@ -533,11 +571,11 @@ export default class Presentation extends React.Component {
           ranges={[
             { loc: [0, 1], title: "#1: handle disabled state" },
             {
-              loc: [94, 95],
+              loc: [93, 94],
               note: "consuming Form passes 'disabled' as prop"
             },
             {
-              loc: [55, 60],
+              loc: [54, 59],
               note: "Save applies to rendered <button />"
             }
           ]}
@@ -563,6 +601,57 @@ export default class Presentation extends React.Component {
             code={require("raw-loader!../assets/ply/save2.example")}
           />
         </Slide>
+        <Slide>
+          <Heading fit>🛑 one more thing 🛑</Heading>
+          <Appear>
+            <Heading fit size={2}>
+              showing the saved data
+            </Heading>
+          </Appear>
+        </Slide>
+        <Slide>
+          <ComponentPlayground
+            code={require("raw-loader!../assets/ply/save3.example")}
+          />
+        </Slide>
+        <CodeSlide
+          code={require("raw-loader!../assets/cs/save3.example")}
+          lang="js"
+          ranges={[
+            {
+              loc: [2, 3],
+              title: "ensuring ✨fresh✨ data"
+            },
+            {
+              loc: [36, 46],
+              note: "refresher: handle success"
+            },
+            {
+              loc: [38, 41],
+              note: "now with a callback"
+            },
+            {
+              loc: [136, 143],
+              note: "meanwhile in Form..."
+            },
+            {
+              loc: [137, 138],
+              note: "provide the callback as a prop on Save"
+            },
+            {
+              loc: [137, 138],
+              note: "the callback could also be a Redux action creator"
+            },
+            {
+              loc: [93, 102],
+              note: "the callback fetches from the location we're saving to"
+            },
+            {
+              loc: [89, 92],
+              note: "we call it on mount too"
+            }
+          ]}
+        />
         <Slide bgColor="tertiary" textColor="primary">
           <Heading textColor="primary">outline</Heading>
           <List>

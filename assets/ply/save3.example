@@ -1,3 +1,5 @@
+const url = `http://localhost:5000/?table=my_app`;
+
 class Save extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,6 @@ class Save extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    const url = `http://localhost:5000/?table=my_app`;
     this.setState(
       { inflight: true },
       () => {
@@ -35,6 +36,9 @@ class Save extends Component {
           })
           .then(res => res.json())
           .then(resp => {
+            if (this.props.cb) {
+              this.props.cb();
+            }
             this.setState({
               inflight: false,
               response: resp
@@ -53,11 +57,14 @@ class Save extends Component {
   render() {
     return (
       <button
+        className="save-button"
         disabled={this.props.disabled}
         onClick={this.handleClick}
         type="submit"
       >
-        save
+        {this.state.inflight
+          ? "saving..."
+          : "save"}
       </button>
     );
   }
@@ -67,13 +74,45 @@ class Form extends Component {
   constructor(props) {
     super(props);
 
+    this.getSaved = this.getSaved.bind(
+      this
+    );
     this.handleInput = this.handleInput.bind(
       this
     );
 
     this.state = {
-      input: null
+      input: null,
+      saved: null
     };
+  }
+
+  componentDidMount() {
+    this.getSaved();
+  }
+
+  getSaved() {
+    window
+      .fetch(url, {
+        headers: {
+          Accept: "application/json"
+        },
+        method: "GET",
+        mode: "cors"
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.length) {
+          this.setState({
+            saved:
+              data[data.length - 1]
+                .value
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   handleInput({ target: { value } }) {
@@ -82,18 +121,28 @@ class Form extends Component {
 
   render() {
     return (
-      <form>
-        <input
-          onChange={this.handleInput}
-          type="text"
-        />
-        <Save
-          body={{
-            value: this.state.input
-          }}
-          disabled={!this.state.input}
-        />
-      </form>
+      <div>
+        {this.state.saved ? (
+          <div>
+            <h3>saved:</h3>
+            <p>{this.state.saved}</p>
+          </div>
+        ) : null}
+        <form>
+          <input
+            className="input-box"
+            onChange={this.handleInput}
+            type="text"
+          />
+          <Save
+            cb={this.getSaved}
+            body={{
+              value: this.state.input
+            }}
+            disabled={!this.state.input}
+          />
+        </form>
+      </div>
     );
   }
 }
