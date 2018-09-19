@@ -1,0 +1,103 @@
+class Save extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(
+      this
+    );
+
+    this.state = {
+      error: null,
+      inflight: false,
+      response: null
+    };
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    const url = `http://localhost:5000/?table=my_app`;
+    this.setState(
+      { inflight: true },
+      () => {
+        window
+          .fetch(url, {
+            body: JSON.stringify(
+              this.props.body
+            ),
+            headers: {
+              Accept:
+                "application/json",
+              "Content-Type":
+                "application/json"
+            },
+            method: "POST",
+            mode: "cors"
+          })
+          .then(res => res.json())
+          .then(resp => {
+            this.setState({
+              inflight: false,
+              response: resp
+            });
+          })
+          .catch(error => {
+            this.setState({
+              error,
+              inflight: false
+            });
+          });
+      }
+    );
+  }
+
+  render() {
+    return (
+      <button
+        className="save-button"
+        disabled={this.props.disabled}
+        onClick={this.handleClick}
+        type="submit"
+      >
+        save
+      </button>
+    );
+  }
+}
+
+class Form extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleInput = this.handleInput.bind(
+      this
+    );
+
+    this.state = {
+      input: null
+    };
+  }
+
+  handleInput({ target: { value } }) {
+    this.setState({ input: value });
+  }
+
+  render() {
+    return (
+      <form>
+        <input
+          className="input-box"
+          onChange={this.handleInput}
+          type="text"
+        />
+        <Save
+          body={{
+            value: this.state.input
+          }}
+          disabled={!this.state.input}
+        />
+      </form>
+    );
+  }
+}
+
+render(<Form />);

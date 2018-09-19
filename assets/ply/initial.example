@@ -11,7 +11,6 @@ class FogtownFetch extends Component {
 
   componentDidMount() {
     const {
-      database,
       table
     } = this.props;
     const url = `http://localhost:5000/?table=${table}`;
@@ -90,7 +89,6 @@ const Data = ({ data }) =>
 
 render(
   <FogtownFetch
-    database="jebeck"
     table="la_croix_survey"
   >
     <Data />

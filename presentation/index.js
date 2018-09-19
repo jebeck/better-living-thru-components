@@ -20,6 +20,7 @@ import {
   List,
   ListItem,
   Quote,
+  S,
   Slide
 } from "spectacle";
 import CodeSlide from "spectacle-code-slide";
@@ -53,6 +54,7 @@ const theme = createTheme(themeColors, {
 const images = {
   algoOrg: require("../assets/img/algo_organization.png"),
   flask: require("../assets/img/flask.png"),
+  hazFeedback: require("../assets/img/haz_feedback.jpg"),
   hive: require("../assets/img/hive.png"),
   lacroixamid: require("../assets/img/lacroixamid.jpg"),
   presto: require("../assets/img/presto.png"),
@@ -168,6 +170,15 @@ export default class Presentation extends React.Component {
             </Appear>
           </List>
         </Slide>
+        <Slide bgColor="tertiary" textColor="primary">
+          <Heading textColor="primary">outline</Heading>
+          <List>
+            <ListItem>setting the context</ListItem>
+            <ListItem>{"<Fetch /> components"}</ListItem>
+            <ListItem>{"<Save /> and <Delete /> components"}</ListItem>
+            <ListItem>{"<Compute /> components"}</ListItem>
+          </List>
+        </Slide>
         <Slide>
           <Heading size={1}>context</Heading>
         </Slide>
@@ -281,15 +292,15 @@ export default class Presentation extends React.Component {
             </ListItem>
           </List>
         </Slide>
-        <Slide>
-          <Heading size={2}>generic storage</Heading>
-          <Heading size={3} textColor="tertiary">
-            (🍰 "redvelvet")
-          </Heading>
+        <Slide bgColor="tertiary" textColor="primary">
+          <Heading textColor="primary">outline</Heading>
           <List>
-            <ListItem>GET</ListItem>
-            <ListItem>POST</ListItem>
-            <ListItem>DELETE</ListItem>
+            <ListItem>
+              <S type="strikethrough">setting the context</S>
+            </ListItem>
+            <ListItem>{"<Fetch /> components"}</ListItem>
+            <ListItem>{"<Save /> and <Delete /> components"}</ListItem>
+            <ListItem>{"<Compute /> components"}</ListItem>
           </List>
         </Slide>
         <Slide>
@@ -367,14 +378,14 @@ export default class Presentation extends React.Component {
           ranges={[
             { loc: [0, 1], title: "initial <Fetch /> API" },
             { loc: [4, 9], note: "initial state" },
-            { loc: [17, 31], note: "fire off the request" },
-            { loc: [31, 38], note: "handle success" },
-            { loc: [38, 44], note: "handle error" },
-            { loc: [48, 69], note: "the render method" },
-            { loc: [53, 61], note: "zero-effort error display" },
-            { loc: [61, 64], note: "zero-effort loading display" },
+            { loc: [16, 30], note: "fire off the request" },
+            { loc: [30, 37], note: "handle success" },
+            { loc: [37, 43], note: "handle error" },
+            { loc: [47, 68], note: "the render method" },
+            { loc: [52, 60], note: "zero-effort error display" },
+            { loc: [60, 63], note: "zero-effort loading display" },
             {
-              loc: [64, 68],
+              loc: [63, 67],
               note: "clone the children + inject state (i.e., the data)"
             }
           ]}
@@ -423,16 +434,178 @@ export default class Presentation extends React.Component {
           lang="js"
           ranges={[
             { loc: [0, 1], title: "more flexible <Fetch />" },
-            {
-              loc: [51, 59],
-              note: "the 'render props' escape hatch"
-            }
+            { loc: [51, 59], note: "the 'render props' escape hatch" }
           ]}
         />
         <Slide>
           <ComponentPlayground
             code={require("raw-loader!../assets/ply/flexible.example")}
           />
+        </Slide>
+        <Slide bgColor="tertiary" textColor="primary">
+          <Heading textColor="primary">outline</Heading>
+          <List>
+            <ListItem>
+              <S type="strikethrough">setting the context</S>
+            </ListItem>
+            <ListItem>
+              <S type="strikethrough">{"<Fetch /> components"}</S>
+            </ListItem>
+            <ListItem>{"<Save /> and <Delete /> components"}</ListItem>
+            <ListItem>{"<Compute /> components"}</ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <Heading fit>
+            <LightCode>{"<Save />"}</LightCode>
+          </Heading>
+          <Heading>and</Heading>
+          <Heading fit>
+            <LightCode>{"<Delete />"}</LightCode>
+          </Heading>
+          <Heading fit>components</Heading>
+        </Slide>
+        <Slide>
+          <Heading size={2}>generic storage</Heading>
+          <Heading size={3} textColor="tertiary">
+            (🍰 "redvelvet")
+          </Heading>
+          <List>
+            <ListItem>GET</ListItem>
+            <ListItem>POST</ListItem>
+            <ListItem>DELETE</ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <List>
+            <ListItem>
+              GET ➡️ <LightCode>componentDidMount</LightCode>
+              {" and "}
+              <LightCode>componentDidUpdate</LightCode>
+            </ListItem>
+            <ListItem>POST ➡️ ???</ListItem>
+            <ListItem>DELETE ➡️ ???</ListItem>
+          </List>
+          <Appear>
+            <Heading>dependent on user action</Heading>
+          </Appear>
+        </Slide>
+        <Slide>
+          <Heading>solution?</Heading>
+          <Appear>
+            <Heading size={2}>render a 🔘 button</Heading>
+          </Appear>
+        </Slide>
+        <CodeSlide
+          code={require("raw-loader!../assets/cs/save0.example")}
+          lang="js"
+          ranges={[
+            { loc: [0, 1], title: "a basic <Save /> API" },
+            { loc: [8, 13], note: "initial state" },
+            { loc: [18, 30], note: "fire off the POST onClick" },
+            { loc: [22, 26], note: "data to POST via this.props" },
+            { loc: [30, 37], note: "handle success" },
+            { loc: [37, 43], note: "handle error" },
+            { loc: [47, 57], note: "the render method, a <button />" },
+            { loc: [59, 60], note: "usage: a consuming app's Form" },
+            { loc: [67, 75], note: "Form captures the input, stores in state" },
+            {
+              loc: [83, 88],
+              note: "renders <Save />, passing input in 'body' prop"
+            }
+          ]}
+        />
+        <Slide>
+          <ComponentPlayground
+            code={require("raw-loader!../assets/ply/save0.example")}
+          />
+        </Slide>
+        <Slide>
+          <Heading>🤔&nbsp;🤔&nbsp;🤔</Heading>
+          <Heading fit>...but...</Heading>
+        </Slide>
+        <Slide>
+          <Image src={images.hazFeedback} width={630} />
+        </Slide>
+        <CodeSlide
+          code={require("raw-loader!../assets/cs/save1.example")}
+          lang="js"
+          ranges={[
+            { loc: [0, 1], title: "#1: handle disabled state" },
+            {
+              loc: [94, 95],
+              note: "consuming Form passes 'disabled' as prop"
+            },
+            {
+              loc: [55, 60],
+              note: "Save applies to rendered <button />"
+            }
+          ]}
+        />
+        <Slide>
+          <ComponentPlayground
+            code={require("raw-loader!../assets/ply/save1.example")}
+          />
+        </Slide>
+        <CodeSlide
+          code={require("raw-loader!../assets/cs/save2.example")}
+          lang="js"
+          ranges={[
+            { loc: [0, 1], title: "#1: handle inflight state" },
+            {
+              loc: [59, 62],
+              note: "Save tracks and displays request inflight state"
+            }
+          ]}
+        />
+        <Slide>
+          <ComponentPlayground
+            code={require("raw-loader!../assets/ply/save2.example")}
+          />
+        </Slide>
+        <Slide bgColor="tertiary" textColor="primary">
+          <Heading textColor="primary">outline</Heading>
+          <List>
+            <ListItem>
+              <S type="strikethrough">setting the context</S>
+            </ListItem>
+            <ListItem>
+              <S type="strikethrough">{"<Fetch /> components"}</S>
+            </ListItem>
+            <ListItem>
+              <S type="strikethrough">{"<Save /> and <Delete /> components"}</S>
+            </ListItem>
+            <ListItem>{"<Compute /> components"}</ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <Heading fit>
+            <LightCode>{"<Compute />"}</LightCode>
+          </Heading>
+          <Heading fit>components</Heading>
+        </Slide>
+        <Slide bgColor="tertiary" textColor="primary">
+          <Heading textColor="primary">outline</Heading>
+          <List>
+            <ListItem>
+              <S type="strikethrough">setting the context</S>
+            </ListItem>
+            <ListItem>
+              <S type="strikethrough">{"<Fetch /> components"}</S>
+            </ListItem>
+            <ListItem>
+              <S type="strikethrough">{"<Save /> and <Delete /> components"}</S>
+            </ListItem>
+            <ListItem>
+              <S type="strikethrough">{"<Compute /> components"}</S>
+            </ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <Heading>🙌&nbsp;🙌&nbsp;🙌</Heading>
+          <Heading>thank you!</Heading>
+          <br />
+          <Heading>🎉&nbsp;🎉</Heading>
         </Slide>
       </Deck>
     );
