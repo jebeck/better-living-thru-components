@@ -52,14 +52,12 @@ const theme = createTheme(themeColors, {
 });
 
 const images = {
-  algoOrg: require("../assets/img/algo_organization.png"),
   enhance: require("../assets/img/enhance.png"),
   flask: require("../assets/img/flask.png"),
   handwrittenNumbers: require("../assets/img/handwritten_numbers.png"),
   handwrittenNumbersTsne: require("../assets/img/handwritten_numbers_tsne.gif"),
   hazFeedback: require("../assets/img/haz_feedback.jpg"),
   hive: require("../assets/img/hive.png"),
-  lacroixamid: require("../assets/img/lacroixamid.jpg"),
   presto: require("../assets/img/presto.png"),
   python: require("../assets/img/python.svg"),
   redis: require("../assets/img/redis.png"),
@@ -222,9 +220,72 @@ export default class Presentation extends React.Component {
             ]).join("")}
           </Heading>
         </Slide>
-        <Slide>
+        <Slide textColor="quaternary">
           <Heading size={2}>(the team)</Heading>
-          <Image src={images.algoOrg} />
+          <Layout>
+            <Fill
+              style={{
+                backgroundColor: themeColors.tertiary,
+                borderRadius: "0.25rem",
+                margin: "0.5rem 1rem",
+                minHeight: "25vh",
+                padding: "2.5rem"
+              }}
+            >
+              <Heading textColor="quaternary">A</Heading>
+              client
+            </Fill>
+            <Fill
+              style={{
+                backgroundColor: themeColors.tertiary,
+                borderRadius: "0.25rem",
+                margin: "0.5rem 1rem",
+                minHeight: "25vh",
+                padding: "2.5rem"
+              }}
+            >
+              <Heading textColor="quaternary">B</Heading>
+              styling
+            </Fill>
+            <Fill
+              style={{
+                backgroundColor: themeColors.tertiary,
+                borderRadius: "0.25rem",
+                margin: "0.5rem 1rem",
+                minHeight: "25vh",
+                padding: "2.5rem"
+              }}
+            >
+              <Heading textColor="quaternary">C</Heading>
+              merch
+            </Fill>
+            <Fill
+              style={{
+                backgroundColor: themeColors.tertiary,
+                borderRadius: "0.25rem",
+                margin: "0.5rem 1rem",
+                minHeight: "25vh",
+                padding: "2.5rem"
+              }}
+            >
+              <Heading textColor="quaternary">D</Heading>
+              etc.
+            </Fill>
+          </Layout>
+          <Layout>
+            <Fill
+              style={{
+                backgroundColor: themeColors.tertiary,
+                borderRadius: "0.25rem",
+                minHeight: "15vh",
+                padding: "1.5rem"
+              }}
+            >
+              <Heading textColor="quaternary" size={3}>
+                data platform
+              </Heading>
+            </Fill>
+          </Layout>
         </Slide>
         <Slide>
           <Heading size={2}>(the team)</Heading>
