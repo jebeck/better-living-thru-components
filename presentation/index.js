@@ -53,14 +53,11 @@ const theme = createTheme(themeColors, {
 
 const images = {
   enhance: require("../assets/img/enhance.png"),
-  flask: require("../assets/img/flask.png"),
+  fogtown: require("../assets/img/fogtown.png"),
   handwrittenNumbers: require("../assets/img/handwritten_numbers.png"),
   handwrittenNumbersTsne: require("../assets/img/handwritten_numbers_tsne.gif"),
   hazFeedback: require("../assets/img/haz_feedback.jpg"),
-  hive: require("../assets/img/hive.png"),
-  presto: require("../assets/img/presto.png"),
   python: require("../assets/img/python.svg"),
-  redis: require("../assets/img/redis.png"),
   rLogo: require("../assets/img/r_logo.png"),
   spark: require("../assets/img/spark.png"),
   tsne: require("../assets/img/tsne.png"),
@@ -332,17 +329,7 @@ export default class Presentation extends React.Component {
               paddingTop: "1.25rem"
             }}
           >
-            <Heading size={2}>(the [web] stack)</Heading>
-            <Layout>
-              <Fill>
-                <Image src={images.hive} width={232.5} />
-                <Image src={images.presto} />
-              </Fill>
-              <Fill>
-                <Image src={images.flask} width={310} />
-                <Image src={images.redis} />
-              </Fill>
-            </Layout>
+            <Image src={images.fogtown} />
           </div>
         </Slide>
         <Slide>
