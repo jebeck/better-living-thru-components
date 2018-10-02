@@ -52,6 +52,7 @@ const theme = createTheme(themeColors, {
 });
 
 const images = {
+  betterLivingThru: require("../assets/img/better_living_thru.png"),
   enhance: require("../assets/img/enhance.png"),
   fogtown: require("../assets/img/fogtown.png"),
   handwrittenNumbers: require("../assets/img/handwritten_numbers.png"),
@@ -76,8 +77,8 @@ export default class Presentation extends React.Component {
         transitionDuration={350}
         theme={theme}
       >
-        <Slide>
-          <Heading size={1}>better living through components</Heading>
+        <Slide bgColor="rgb(252,251,247)">
+          <Image src={images.betterLivingThru} />
         </Slide>
         <Slide textSize="2.5rem">
           <Heading fit size={1}>
