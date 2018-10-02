@@ -13,7 +13,7 @@ class FogtownFetch extends Component {
     const {
       table
     } = this.props;
-    const url = `http://localhost:5000/?table=${table}`;
+    const url = `https://better-livin.now.sh/?table=${table}`;
     this.setState(
       { loading: true },
       () => {

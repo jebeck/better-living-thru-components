@@ -15,7 +15,7 @@ class Save extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    const url = `http://localhost:5000/?table=my_app`;
+    const url = `https://better-livin.now.sh/?table=my_app`;
     this.setState(
       { inflight: true },
       () => {
