@@ -879,7 +879,7 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading>
             <Link
-              demo="http://localhost:6060/#!/BasicVisualization"
+              href="http://localhost:6060/#!/BasicVisualization"
               textColor="secondary"
             >
               demo
