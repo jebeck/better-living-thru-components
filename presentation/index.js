@@ -34,15 +34,22 @@ import preloader from "spectacle/lib/utils/preloader";
 require("normalize.css");
 
 const LightCode = styled(Code)`
-  background-color: rgba(242, 241, 239, 0.25);
-  color: white !important;
+  background-color: rgba(238, 125, 120, 0.2) !important;
+  color: rgb(26, 21, 119) !important;
   font-weight: bold;
 `;
 
+// const themeColors = {
+//   primary: "#00706c",
+//   secondary: "#f2f1ef",
+//   tertiary: "#4ecec9",
+//   quaternary: "#96908c"
+// };
+
 const themeColors = {
-  primary: "#00706c",
-  secondary: "#f2f1ef",
-  tertiary: "#4ecec9",
+  primary: "rgb(252,251,247)",
+  secondary: "rgb(26,21,119)",
+  tertiary: "rgb(238,125,120)",
   quaternary: "#96908c"
 };
 
@@ -53,12 +60,20 @@ const theme = createTheme(themeColors, {
 
 const images = {
   betterLivingThru: require("../assets/img/better_living_thru.png"),
+  bobRoss: require("../assets/img/bobross.jpg"),
+  bobRossData: require("../assets/img/bobross_data.png"),
+  doAnything: require("../assets/img/do_anything.gif"),
   enhance: require("../assets/img/enhance.png"),
+  findFreedom: require("../assets/img/find_freedom.gif"),
   fogtown: require("../assets/img/fogtown.png"),
   handwrittenNumbers: require("../assets/img/handwritten_numbers.png"),
   handwrittenNumbersTsne: require("../assets/img/handwritten_numbers_tsne.gif"),
+  happyAccidents: require("../assets/img/happy_accidents.gif"),
+  happyTrees: require("../assets/img/happy_trees.gif"),
   hazFeedback: require("../assets/img/haz_feedback.jpg"),
+  miniBobRoss: require("../assets/img/mini_bobross.png"),
   python: require("../assets/img/python.svg"),
+  reactDocsRenderProps: require("../assets/img/react_docs_render_props.png"),
   rLogo: require("../assets/img/r_logo.png"),
   spark: require("../assets/img/spark.png"),
   supreme: require("../assets/img/supreme.png"),
@@ -81,6 +96,10 @@ export default class Presentation extends React.Component {
         <Slide bgColor="rgb(252,251,247)">
           <Image src={images.betterLivingThru} />
         </Slide>
+        <Slide>
+          <Heading>😱</Heading>
+        </Slide>
+        <Slide bgImage={images.bobRoss} />
         <Slide textSize="2.5rem">
           <Heading fit size={1}>
             slide deck is online!
@@ -144,7 +163,7 @@ export default class Presentation extends React.Component {
             height="45vh"
           >
             <path
-              fill="#4ecec9"
+              fill="rgb(26,21,119)"
               d="M607.707 340.293l-13.164-13.164 11.39-11.39c.878-.88.878-2.303 0-3.182s-2.304-.88-3.183 0l-11.39 11.39-18.373-18.375 11.397-11.397c.88-.88.88-2.303 0-3.182s-2.303-.88-3.182 0l-11.397 11.397-20.015-20.014c-.844-.844-2.338-.844-3.182 0l-19.93 19.93-11.312-11.312c-.88-.88-2.303-.88-3.182 0s-.88 2.303 0 3.182l11.312 11.312-18.39 18.39-11.32-11.32c-.88-.88-2.303-.88-3.182 0s-.88 2.303 0 3.182l11.32 11.32-13.233 13.233c-.42.422-.658.994-.658 1.59s.237 1.17.66 1.592l13.163 13.164-11.388 11.387c-.88.88-.88 2.303 0 3.182.44.438 1.015.658 1.59.658s1.152-.22 1.592-.66l11.387-11.388 18.373 18.373-11.397 11.397c-.88.88-.88 2.303 0 3.182.44.44 1.015.66 1.59.66s1.152-.22 1.592-.66l11.397-11.397 20.016 20.015c.44.44 1.015.66 1.59.66s1.152-.22 1.592-.66l19.93-19.93 11.312 11.312c.44.44 1.015.66 1.59.66s1.152-.22 1.592-.66c.88-.88.88-2.303 0-3.182l-11.312-11.312 18.39-18.39 11.32 11.32c.44.438 1.016.658 1.592.658s1.15-.22 1.59-.66c.88-.878.88-2.302 0-3.18l-11.32-11.32 13.233-13.233c.88-.877.88-2.3 0-3.18zM548.2 287.148l18.424 18.424-18.34 18.34-18.423-18.425 18.34-18.34zm-54.735 54.736l11.643-11.643 11.573 11.574-11.64 11.643-11.575-11.573zm14.755 14.755l13.233-13.235c.88-.88.88-2.303 0-3.182L508.29 327.06l18.39-18.39 18.423 18.423-13.284 13.284c-.88.88-.88 2.303 0 3.182l13.112 13.112-18.34 18.34-18.372-18.373zm40.065-26.365l11.522 11.522-11.693 11.693-11.522-11.522 11.693-11.693zm-.085 66.343l-18.425-18.425 18.34-18.34 18.424 18.426-18.34 18.338zm21.52-21.52l-18.424-18.425 13.284-13.284c.88-.88.88-2.304 0-3.183l-13.113-13.113 18.34-18.34 18.373 18.375-13.232 13.232c-.88.88-.88 2.303 0 3.182l13.164 13.164-18.39 18.39zm21.573-21.573l-11.573-11.573 11.64-11.642 11.574 11.574-11.64 11.64z"
             />
           </svg>
@@ -196,7 +215,7 @@ export default class Presentation extends React.Component {
           <Link
             href="http://algorithms-tour.stitchfix.com/"
             target="_blank"
-            textColor="primary"
+            textColor="secondary"
           >
             <FaExternalLink />
             &nbsp;take the Stitch Fix algo tour!
@@ -207,6 +226,10 @@ export default class Presentation extends React.Component {
           >
             (T design courtesy of my coworker Divya Prabhakar)
           </Heading>
+        </Slide>
+        <Slide>
+          <Heading fit>(Bob Ross GIF break 1 of 4)</Heading>
+          <Image src={images.findFreedom} />
         </Slide>
         <Slide>
           <Heading size={2}>better living</Heading>
@@ -224,7 +247,7 @@ export default class Presentation extends React.Component {
               <ListItem>persistence</ListItem>
             </Appear>
             <Appear>
-              <ListItem>computation</ListItem>
+              <ListItem>computation (👈 this is the fun one!!)</ListItem>
             </Appear>
           </List>
         </Slide>
@@ -275,7 +298,7 @@ export default class Presentation extends React.Component {
             ]).join("")}
           </Heading>
         </Slide>
-        <Slide textColor="quaternary">
+        <Slide textColor="primary">
           <Heading size={2}>(the team)</Heading>
           <Layout>
             <Fill
@@ -287,7 +310,7 @@ export default class Presentation extends React.Component {
                 padding: "2.5rem"
               }}
             >
-              <Heading textColor="quaternary">A</Heading>
+              <Heading textColor="primary">A</Heading>
               client
             </Fill>
             <Fill
@@ -299,7 +322,7 @@ export default class Presentation extends React.Component {
                 padding: "2.5rem"
               }}
             >
-              <Heading textColor="quaternary">B</Heading>
+              <Heading textColor="primary">B</Heading>
               styling
             </Fill>
             <Fill
@@ -311,7 +334,7 @@ export default class Presentation extends React.Component {
                 padding: "2.5rem"
               }}
             >
-              <Heading textColor="quaternary">C</Heading>
+              <Heading textColor="primary">C</Heading>
               merch
             </Fill>
             <Fill
@@ -323,7 +346,7 @@ export default class Presentation extends React.Component {
                 padding: "2.5rem"
               }}
             >
-              <Heading textColor="quaternary">D</Heading>
+              <Heading textColor="primary">D</Heading>
               etc.
             </Fill>
           </Layout>
@@ -336,7 +359,7 @@ export default class Presentation extends React.Component {
                 padding: "1.5rem"
               }}
             >
-              <Heading textColor="quaternary" size={3}>
+              <Heading textColor="primary" size={3}>
                 data platform
               </Heading>
             </Fill>
@@ -345,7 +368,7 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={2}>(the team)</Heading>
           <List>
-            <ListItem>technical</ListItem>
+            <ListItem>technical ("full stack" data scientists)</ListItem>
             <ListItem>...but not with frontend web dev</ListItem>
           </List>
         </Slide>
@@ -380,17 +403,6 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
         <Slide>
-          <div
-            style={{
-              backgroundColor: "rgba(255,255,255,0.33)",
-              borderRadius: "1rem",
-              paddingTop: "1.25rem"
-            }}
-          >
-            <Image src={images.fogtown} />
-          </div>
-        </Slide>
-        <Slide>
           <Heading size={2}>data warehouse</Heading>
           <Heading size={3} textColor="tertiary">
             (🌁 "fogtown")
@@ -403,6 +415,17 @@ export default class Presentation extends React.Component {
             </ListItem>
           </List>
         </Slide>
+        <Slide>
+          <div
+            style={{
+              backgroundColor: "rgba(255,255,255,0.33)",
+              borderRadius: "1rem",
+              paddingTop: "1.25rem"
+            }}
+          >
+            <Image src={images.fogtown} />
+          </div>
+        </Slide>
         <Slide bgColor="tertiary" textColor="primary">
           <Heading textColor="primary">outline</Heading>
           <List>
@@ -413,6 +436,10 @@ export default class Presentation extends React.Component {
             <ListItem>{"<Save /> and <Delete /> components"}</ListItem>
             <ListItem>{"<Compute /> components"}</ListItem>
           </List>
+        </Slide>
+        <Slide>
+          <Heading fit>(Bob Ross GIF break 2 of 4)</Heading>
+          <Image src={images.happyTrees} />
         </Slide>
         <Slide>
           <Heading fit>
@@ -440,26 +467,6 @@ export default class Presentation extends React.Component {
           <BlockQuote>
             <Quote textColor="secondary">
               "we didn't give components a fair shake yet"
-            </Quote>
-            <Cite>Ryan Florence</Cite>
-          </BlockQuote>
-        </Slide>
-        <Slide>
-          <Heading fit>{"<Rethinker stop={false} />"}</Heading>
-          <BlockQuote>
-            <Quote textColor="secondary">
-              "I've got a problem...I'm gonna type out a component, and see if I
-              can make it work"
-            </Quote>
-            <Cite>Ryan Florence</Cite>
-          </BlockQuote>
-        </Slide>
-        <Slide>
-          <Heading fit>{"<Rethinker stop={false} />"}</Heading>
-          <BlockQuote>
-            <Quote textColor="secondary">
-              "I'm able to use React's lifecycle hooks to make anything
-              declarative"
             </Quote>
             <Cite>Ryan Florence</Cite>
           </BlockQuote>
@@ -501,6 +508,9 @@ export default class Presentation extends React.Component {
             }
           ]}
         />
+        <Slide>
+          <Image src={images.reactDocsRenderProps} />
+        </Slide>
         <Slide>
           <ComponentPlayground
             code={require("raw-loader!../assets/ply/initial.example")}
@@ -565,6 +575,10 @@ export default class Presentation extends React.Component {
             <ListItem>{"<Save /> and <Delete /> components"}</ListItem>
             <ListItem>{"<Compute /> components"}</ListItem>
           </List>
+        </Slide>
+        <Slide>
+          <Heading fit>(Bob Ross GIF break 3 of 4)</Heading>
+          <Image src={images.doAnything} />
         </Slide>
         <Slide>
           <Heading fit>
@@ -772,6 +786,32 @@ export default class Presentation extends React.Component {
             <Heading fit>(left as an exercise 😉)</Heading>
           </Appear>
         </Slide>
+        <Slide>
+          <Heading>some conclusions</Heading>
+        </Slide>
+        <Slide>
+          <Heading>in practice</Heading>
+          <Heading fit size={2}>
+            components make a good tool set when...
+          </Heading>
+          <List>
+            <ListItem>many small(ish)/mostly small apps</ListItem>
+            <ListItem>built on shared resources</ListItem>
+          </List>
+        </Slide>
+        <Slide>
+          <Heading>in practice</Heading>
+          <Heading fit size={2}>
+            components are a good unit of abstraction
+          </Heading>
+          <List>
+            <ListItem>approachable</ListItem>
+            <ListItem>encapsulated (single-file)</ListItem>
+            <ListItem>
+              easy documentation via Storybook, Styleguidist, etc.
+            </ListItem>
+          </List>
+        </Slide>
         <Slide bgColor="tertiary" textColor="primary">
           <Heading textColor="primary">outline</Heading>
           <List>
@@ -784,8 +824,12 @@ export default class Presentation extends React.Component {
             <ListItem>
               <S type="strikethrough">{"<Save /> and <Delete /> components"}</S>
             </ListItem>
-            <ListItem>{"<Compute /> components"}</ListItem>
+            <ListItem>{"<Compute /> components (🎉)"}</ListItem>
           </List>
+        </Slide>
+        <Slide>
+          <Heading fit>(Bob Ross GIF break 4 of 4)</Heading>
+          <Image src={images.happyAccidents} />
         </Slide>
         <Slide>
           <Heading fit>
@@ -819,15 +863,21 @@ export default class Presentation extends React.Component {
           </Heading>
           <Heading fit>i.e., grouping in 2 or 3 dimensions</Heading>
         </Slide>
+        <Slide bgImage={images.bobRoss} />
         <Slide>
-          <Heading fit>ex: (next slide)</Heading>
-          <Heading fit size={2}>
-            grouping handwritten numbers
-          </Heading>
-          <Image src={images.handwrittenNumbers} />
+          <Heading>we'll get to Bob</Heading>
+          <Heading size={2}>(I promise)</Heading>
+          <Appear>
+            <Heading>first, 🍷</Heading>
+          </Appear>
         </Slide>
+        <CodeSlide
+          code={require("raw-loader!../assets/cs/wine_data.example")}
+          lang="json"
+          ranges={[{ loc: [1, 15], note: "a wine datum" }]}
+        />
         <Slide>
-          <Image src={images.handwrittenNumbersTsne} width="75%" />
+          <Heading>demo</Heading>
         </Slide>
         <Slide>
           <Heading fit>why tSNE as a component?</Heading>
@@ -844,21 +894,6 @@ export default class Presentation extends React.Component {
             </List>
           </Appear>
         </Slide>
-        <CodeSlide
-          code={require("raw-loader!../assets/cs/compute.example")}
-          lang="js"
-          ranges={[
-            { loc: [0, 1], title: "sketch of a <Compute /> component API" },
-            { loc: [36, 63], note: "the compute method" },
-            { loc: [47, 53], note: "✨new✨: cache result in localStorage" },
-            { loc: [11, 25], note: "more interesting: componentDidMount" },
-            {
-              loc: [26, 35],
-              note: "componentDidUpdate: force recompute via prop"
-            },
-            { loc: [64, 69], note: "render: just the 'render props' pattern" }
-          ]}
-        />
         <Slide bgColor="tertiary" textColor="primary">
           <Heading textColor="primary">outline</Heading>
           <List>
@@ -876,18 +911,16 @@ export default class Presentation extends React.Component {
             </ListItem>
           </List>
         </Slide>
+        <Slide bgImage={images.bobRoss} />
         <Slide>
-          <Heading>conclusion</Heading>
-          <Heading fit size={2}>
-            components are a good unit of abstraction
-          </Heading>
-          <List>
-            <ListItem>approachable</ListItem>
-            <ListItem>encapsulated (single-file)</ListItem>
-            <ListItem>
-              easy documentation via Storybook, Styleguidist, etc.
-            </ListItem>
-          </List>
+          <Image src={images.bobRossData} />
+        </Slide>
+        <Slide>
+          <Layout>
+            <Image height={100} src={images.miniBobRoss} width={100} />
+            <Heading>demo</Heading>
+            <Image height={100} src={images.miniBobRoss} width={100} />
+          </Layout>
         </Slide>
         <Slide>
           <Heading>🙌&nbsp;🙌&nbsp;🙌</Heading>
