@@ -877,7 +877,14 @@ export default class Presentation extends React.Component {
           ranges={[{ loc: [1, 15], note: "a wine datum" }]}
         />
         <Slide>
-          <Heading>demo</Heading>
+          <Heading>
+            <Link
+              demo="http://localhost:6060/#!/BasicVisualization"
+              textColor="secondary"
+            >
+              demo
+            </Link>
+          </Heading>
         </Slide>
         <Slide>
           <Heading fit>why tSNE as a component?</Heading>
@@ -918,7 +925,14 @@ export default class Presentation extends React.Component {
         <Slide>
           <Layout>
             <Image height={100} src={images.miniBobRoss} width={100} />
-            <Heading>demo</Heading>
+            <Heading>
+              <Link
+                href="http://localhost:6060/#!/BobRoss"
+                textColor="secondary"
+              >
+                demo
+              </Link>
+            </Heading>
             <Image height={100} src={images.miniBobRoss} width={100} />
           </Layout>
         </Slide>
